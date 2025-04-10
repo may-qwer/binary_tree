@@ -6,6 +6,7 @@ public:
     int data;
     Note *right;
     Note *left;
+    Note *parent;
 };
 
 #endif

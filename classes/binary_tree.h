@@ -1,4 +1,5 @@
 #include "note.h"
+#include "linked_list.h"
 #ifndef BINARY_TREE_H
 #define BINARY_TREE_H
 
@@ -8,16 +9,24 @@ public:
 
     Binary_tree(int first_val);
 
-    int add(int data);
+    int add(int d);
 
-    void remove(int data);
+    void remove(int d);
 
-    int get_max_len();
+    int get_height();
 
     void show_bt();
 
 private:
     int recursion_add(Note *el, int data);
+
+    L_list *recursion_move_to_ll(Note *el);
+
+    Note *go_through(Note *el);
+
+    Note *go_left(Note *el);
+
+    Note *go_right(Note *el);
 };
 
 #endif
