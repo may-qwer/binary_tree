@@ -4,44 +4,12 @@ Binary_tree::Binary_tree(int first_val) {
     root->data = first_val;
     root->right = nullptr;
     root->left = nullptr;
-    root->parent = nullptr;
+    root->parent = nullptr;  
+    ll = new L_list();
 }
 
 int Binary_tree::add(int d) {
     return recursion_add(root, d); 
-}
-
-void Binary_tree::remove(int d) {
-    Note *tmp = new Note;
-    tmp = root;
-    for (tmp; tmp->data != d; ) {
-        if (tmp->data < d) {
-            tmp = tmp->right;
-        }
-        else {
-            tmp = tmp->left;
-        }
-    }
-    recursion_move_to_ll(tmp);    
-}
-
-L_list *Binary_tree::recursion_move_to_ll(Note *el) {
-    L_list *ll_of_moved = new L_list;
-}
-
-Note *Binary_tree::go_through(Note *el) {
-
-}
-
-Note *Binary_tree::go_left(Note *el) {
-    if (el->left == nullptr) {
-        return;
-    }
-    go_through(el->left);
-}
-
-Note *Binary_tree::go_right(Note *el) {
-
 }
 
 int Binary_tree::recursion_add(Note *el, int d) {
@@ -70,4 +38,51 @@ int Binary_tree::recursion_add(Note *el, int d) {
     }
     return -1;
 }
+
+
+void Binary_tree::remove(int d) {
+    Note *tmp = new Note;
+    tmp = root;
+    for (tmp; tmp->data != d; ) {
+        if (tmp->data < d) {
+            tmp = tmp->right;
+        }
+        else {
+            tmp = tmp->left;
+        }
+    }
+    recursion_move_to_ll(tmp);  
+
+    
+    ll->clean();
+}
+
+void Binary_tree::recursion_move_to_ll(Note *el) {
+    Note *tmp = new Note;
+    tmp = root;
+    go_through_for_remove(tmp);
+    delete tmp;
+}
+
+void Binary_tree::go_through_for_remove(Note *el) {
+    ll->push(el->data);
+    go_left_for_remove(el->left);
+    go_right_for_remove(el->right);
+    delete el;
+}
+
+void Binary_tree::go_left_for_remove(Note *el) {
+    if (el->left == nullptr) {
+        return;
+    }
+    go_through_for_remove(el->left);
+}
+
+void Binary_tree::go_right_for_remove(Note *el) {
+    if (el->right == nullptr) {
+        return;
+    }
+    go_through_for_remove(el->right);
+}
+
 

@@ -18,15 +18,17 @@ public:
     void show_bt();
 
 private:
+    L_list *ll;
+
     int recursion_add(Note *el, int data);
 
-    L_list *recursion_move_to_ll(Note *el);
+    void recursion_move_to_ll(Note *el);
 
-    Note *go_through(Note *el);
+    void go_through_for_remove(Note *el);
 
-    Note *go_left(Note *el);
+    void go_left_for_remove(Note *el);
 
-    Note *go_right(Note *el);
+    void go_right_for_remove(Note *el);
 };
 
 #endif

@@ -1,7 +1,7 @@
 #include "linked_list.h"
 
 L_list::L_list() {
-    Node_ll *fst = new Node_ll;
+    fst = new Node_ll;
     fst->data = -1;
     fst->next = nullptr;
 }
@@ -20,4 +20,10 @@ void L_list::pop() {
     Node_ll *tmp = fst->next;
     fst->next = fst->next->next;
     delete tmp;
+}
+
+void L_list::clean() {
+    while (fst->next !=nullptr) {
+        pop();
+    }
 }

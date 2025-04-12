@@ -1,6 +1,6 @@
 #include <iostream>
 #include "./classes/binary_tree.h"
-// #include "./classes/linked_list.h"
+#include "./classes/linked_list.h"
 using namespace std;
 
 int main() {
@@ -14,6 +14,19 @@ int main() {
     bt.add(85);
     bt.add(90);
 
+    bt.remove(60);
+
+    L_list ll;
+    cout << ll.fst->data << endl;
+    cout << ll.fst->next << endl;
+    ll.push(10);
+    ll.push(10);
+    ll.push(10);
+    ll.push(10);
+    ll.push(10);
+    ll.push(10);
+
+    ll.clean();
 
     cout << "end" << endl;
 
