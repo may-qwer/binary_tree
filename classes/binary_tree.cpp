@@ -41,8 +41,7 @@ int Binary_tree::recursion_add(Note *el, int d) {
 
 
 void Binary_tree::remove(int d) {
-    Note *tmp = new Note;
-    tmp = root;
+    Note *tmp = root;
     for (tmp; tmp->data != d; ) {
         if (tmp->data < d) {
             tmp = tmp->right;
@@ -51,38 +50,25 @@ void Binary_tree::remove(int d) {
             tmp = tmp->left;
         }
     }
-    recursion_move_to_ll(tmp);  
-
-    
-    ll->clean();
-}
-
-void Binary_tree::recursion_move_to_ll(Note *el) {
-    Note *tmp = new Note;
-    tmp = root;
-    go_through_for_remove(tmp);
+    go_through_for_remove(tmp->left);
+    go_through_for_remove(tmp->right);
     delete tmp;
+    while (ll->fst->next != nullptr) {
+        this->add(ll->pop());
+    }
 }
 
 void Binary_tree::go_through_for_remove(Note *el) {
-    ll->push(el->data);
-    go_left_for_remove(el->left);
-    go_right_for_remove(el->right);
-    delete el;
-}
-
-void Binary_tree::go_left_for_remove(Note *el) {
-    if (el->left == nullptr) {
-        return;
+    if (el) {
+        ll->push(el->data);
+        if (el->left != nullptr ) {
+            go_through_for_remove(el->left);
+        }
+        if (el->right != nullptr) {
+            go_through_for_remove(el->right);
+        }
+        delete el;
     }
-    go_through_for_remove(el->left);
-}
-
-void Binary_tree::go_right_for_remove(Note *el) {
-    if (el->right == nullptr) {
-        return;
-    }
-    go_through_for_remove(el->right);
 }
 
 

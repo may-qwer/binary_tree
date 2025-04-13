@@ -14,19 +14,27 @@ int main() {
     bt.add(85);
     bt.add(90);
 
-    bt.remove(60);
+    bt.remove(80);
 
-    L_list ll;
-    cout << ll.fst->data << endl;
-    cout << ll.fst->next << endl;
-    ll.push(10);
-    ll.push(10);
-    ll.push(10);
-    ll.push(10);
-    ll.push(10);
-    ll.push(10);
+    // L_list ll;
+    // ll.push(10);
+    // ll.push(11);
+    // ll.push(12);
+    // ll.push(13);
+    // ll.push(14);
+    // ll.push(15);
 
-    ll.clean();
+    // cout << ll.pop() << endl;
+    // cout << ll.pop() << endl;
+    // cout << ll.pop() << endl;
+    // cout << ll.pop() << endl;
+    // cout << ll.pop() << endl;
+    // cout << ll.pop() << endl;
+    // cout << ll.fst->next << endl;
+    // cout << ll.pop() << endl;
+    // cout << ll.pop() << endl;
+    // cout << ll.pop() << endl;
+    // cout << ll.pop() << endl;
 
     cout << "end" << endl;
 

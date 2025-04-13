@@ -22,13 +22,8 @@ private:
 
     int recursion_add(Note *el, int data);
 
-    void recursion_move_to_ll(Note *el);
-
     void go_through_for_remove(Note *el);
 
-    void go_left_for_remove(Note *el);
-
-    void go_right_for_remove(Note *el);
 };
 
 #endif

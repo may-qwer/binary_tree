@@ -15,9 +15,7 @@ public:
     
     void push(int d);
 
-    void pop();
-
-    void clean();
+    int pop();
 };
 
 #endif

@@ -13,17 +13,15 @@ void L_list::push(int d) {
     fst->next = new_ll;
 }
 
-void L_list::pop() {
+int L_list::pop() {
+    int res = 0;
     if (fst->next == nullptr) {
-        return;
+        return res;
     }
     Node_ll *tmp = fst->next;
     fst->next = fst->next->next;
+    res = tmp->data;
     delete tmp;
+    return res;
 }
 
-void L_list::clean() {
-    while (fst->next !=nullptr) {
-        pop();
-    }
-}
