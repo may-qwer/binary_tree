@@ -1,4 +1,6 @@
 #include "binary_tree.h"
+#include <iostream>
+using namespace std;
 
 Binary_tree::Binary_tree(int first_val) {
     root->data = first_val;
@@ -40,7 +42,7 @@ int Binary_tree::recursion_add(Note *el, int d) {
 }
 
 
-void Binary_tree::remove(int d) {
+void Binary_tree::remove_add(int d) {
     Note *tmp = root;
     for (tmp; tmp->data != d; ) {
         if (tmp->data < d) {
@@ -52,6 +54,11 @@ void Binary_tree::remove(int d) {
     }
     go_through_for_remove(tmp->left);
     go_through_for_remove(tmp->right);
+    if (tmp->parent->data < d) {
+        tmp->parent->right = nullptr;
+    } else {
+        tmp->parent->left = nullptr;
+    }
     delete tmp;
     while (ll->fst->next != nullptr) {
         this->add(ll->pop());
@@ -71,4 +78,44 @@ void Binary_tree::go_through_for_remove(Note *el) {
     }
 }
 
+int Binary_tree::get_height() {
+    return recurse_get_height(root);
+}
 
+int Binary_tree::recurse_get_height(Note *el) {
+    if (el == nullptr) {
+        return 0;
+    }
+    int left_tree = recurse_get_height(el->left);
+    int right_tree = recurse_get_height(el->right);
+    return get_max(left_tree, right_tree) + 1;
+}
+
+int Binary_tree::get_width() {
+    
+}
+
+int Binary_tree::get_max(int a1, int a2) {
+    if (a1 < a2) {
+        return a2;
+    } else {
+        return a1;
+    }
+}
+
+void Binary_tree::show_bt() {
+    height = get_height();
+
+
+    height = 0;
+}
+
+void Binary_tree::pr_str(char **m_str) {
+
+}
+
+char **Binary_tree::add_to_str(Note *el){
+    char **str = new char*[2*height];
+
+    
+}
