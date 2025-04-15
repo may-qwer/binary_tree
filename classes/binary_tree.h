@@ -17,12 +17,11 @@ public:
 
     int get_height();
 
-    int get_width();
-
     void show_bt();
 
 private:
     L_list *ll;
+    L_list *ll_for_show;
 
     int height = 0;
 
@@ -36,7 +35,9 @@ private:
 
     void pr_str(char **m_str);
 
-    char **add_to_str(Note *el);
+    char **add_to_str(int lvl);
+
+    void add_to_ll_for_show(Note *el, int now_lvl, int cur_lvl);
 
 };
 
