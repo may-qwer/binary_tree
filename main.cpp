@@ -16,10 +16,6 @@ int main() {
     bt.add(20);
     bt.add(10);
 
-    cout << bt.root->left->right << endl;
-
-    bt.show_bt();
-
     bt.remove_add(80);
     
     cout << "end" << endl;

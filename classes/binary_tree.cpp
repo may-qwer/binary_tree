@@ -100,39 +100,3 @@ int Binary_tree::get_max(int a1, int a2) {
     }
 }
 
-void Binary_tree::show_bt() {
-    height = get_height();
-    ll_for_show = new L_list;
-    for (int i = 1; i != height; i++) {
-        add_to_ll_for_show(root, 1, i);
-        // pr_str(add_to_str(i));
-
-        while (ll_for_show->fst->next != nullptr) {
-            ll_for_show->pop();
-        }
-    }
-
-    height = 0;
-}
-
-void Binary_tree::pr_str(char **m_str) {
-
-}
-
-char **Binary_tree::add_to_str(int lvl){
-    // char **str = new char*[lvl+1];
-
-    
-}
-
-
-void Binary_tree::add_to_ll_for_show(Note *el, int now_lvl, int cur_lvl) {
-    if (now_lvl == cur_lvl) {
-        ll_for_show->push((el->left ? el->left->data : 0));
-        ll_for_show->push((el->right ? el->right->data : 0));
-
-        return;
-    }
-    add_to_ll_for_show(el->left, now_lvl++, cur_lvl);
-    add_to_ll_for_show(el->right, now_lvl++, cur_lvl);
-}

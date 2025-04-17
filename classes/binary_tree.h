@@ -13,11 +13,7 @@ public:
 
     void remove_add(int d);
 
-    void remove_move(int d);
-
     int get_height();
-
-    void show_bt();
 
 private:
     L_list *ll;
@@ -32,12 +28,6 @@ private:
     int recurse_get_height(Note *el);
 
     int get_max(int a1, int a2);
-
-    void pr_str(char **m_str);
-
-    char **add_to_str(int lvl);
-
-    void add_to_ll_for_show(Note *el, int now_lvl, int cur_lvl);
 
 };
 
