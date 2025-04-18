@@ -7,6 +7,7 @@ public:
     Note *right;
     Note *left;
     Note *parent;
+    int height;
 };
 
 #endif

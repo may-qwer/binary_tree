@@ -9,26 +9,48 @@ public:
 
     Binary_tree(int first_val);
 
-    int add(int d);
+    void add(int d);
 
-    void remove_add(int d);
+    bool search(int val);
 
-    int get_height();
+    int get_max();
+
+    int get_min();
+
+    void remove(int val);
+
+    void symmetrical_bypass();
+
+    void delete_tree();
+
+    void copy_tree();
+
+    int get_balance();
+
+    void left_rotate();
+
+    void right_rotate();
+
+    void left_right_rotate();
+
+    void right_left_rotate();
 
 private:
-    L_list *ll;
-    L_list *ll_for_show;
 
-    int height = 0;
+    void recursion_add(Note *el, int data);
 
-    int recursion_add(Note *el, int data);
+    bool recursion_search(Note *el, int val);
 
-    void go_through_for_remove(Note *el);
+    int recursion_get_max(Note *el);
 
-    int recurse_get_height(Note *el);
+    int recursion_get_min(Note *el);
 
-    int get_max(int a1, int a2);
+    void recursion_remove(Note *el, int val);
 
+    void del_el(Note *el);
+    
+
+    void set_hieght(Note *el);
 };
 
 #endif

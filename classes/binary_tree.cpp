@@ -7,96 +7,131 @@ Binary_tree::Binary_tree(int first_val) {
     root->data = first_val;
     root->right = nullptr;
     root->left = nullptr;
-    root->parent = nullptr;  
-    ll = new L_list();
+    root->parent = nullptr;
+    root->height = 0;  
 }
 
-int Binary_tree::add(int d) {
-    return recursion_add(root, d); 
+void Binary_tree::add(int d) {
+    recursion_add(root, d); 
 }
 
-int Binary_tree::recursion_add(Note *el, int d) {
-    if (el->data > d && el->left == nullptr) {
-        Note *new_bt = new Note;
-        new_bt->data = d;
-        new_bt->left = nullptr;
-        new_bt->right = nullptr;
-        new_bt->parent = el;
-        el->left = new_bt;
-        return d;
-    } else if (el->data < d && el->right == nullptr) {
-        Note *new_bt = new Note;
-        new_bt->data = d;
-        new_bt->left = nullptr;
-        new_bt->right = nullptr;
-        new_bt->parent = el;
-        el->right = new_bt;
-        return d;
-    } else if (el->data > d) {
+void Binary_tree::recursion_add(Note *el, int d) {
+    if (el->data > d && el->left != nullptr) {
         recursion_add(el->left, d);
-        return -1;
-    } else if (el->data < d) {
+    } else if (el->data < d && el->right != nullptr) {
         recursion_add(el->right, d);
-        return -1;
-    }
-    return -1;
-}
-
-
-void Binary_tree::remove_add(int d) {
-    Note *tmp = root;
-    for (tmp; tmp->data != d; ) {
-        if (tmp->data < d) {
-            tmp = tmp->right;
-        }
-        else {
-            tmp = tmp->left;
-        }
-    }
-    go_through_for_remove(tmp->left);
-    go_through_for_remove(tmp->right);
-    if (tmp->parent->data < d) {
-        tmp->parent->right = nullptr;
     } else {
-        tmp->parent->left = nullptr;
-    }
-    delete tmp;
-    while (ll->fst->next != nullptr) {
-        this->add(ll->pop());
+        Note *new_bt = new Note;
+        new_bt->data = d;
+        new_bt->left = nullptr;
+        new_bt->right = nullptr;
+        new_bt->height = 0;
+        new_bt->parent = el;
+        if (el->data > d) {
+            el->left = new_bt;
+        } else if (el->data < d) {
+            el->right = new_bt;
+        }
+        set_hieght(new_bt->parent);
     }
 }
 
-void Binary_tree::go_through_for_remove(Note *el) {
-    if (el) {
-        ll->push(el->data);
-        if (el->left != nullptr ) {
-            go_through_for_remove(el->left);
-        }
-        if (el->right != nullptr) {
-            go_through_for_remove(el->right);
+bool Binary_tree::search(int val) {
+    return recursion_search(root, val);
+}
+
+bool Binary_tree::recursion_search(Note* el, int val) {
+    if (el->data == val) {
+        return true;
+    }
+    if (val > el->data && el->right) {
+        return recursion_search(el->right, val);
+    } else if (val < el->data && el->left) {
+        return recursion_search(el->left, val);
+    } else {
+        return false;
+    }
+}
+
+int Binary_tree::get_max() {
+    return recursion_get_max(root);
+}
+
+int Binary_tree::recursion_get_max(Note *el) {
+    if (!el->right) {
+        return el->data;
+    }
+    return recursion_get_max(el->right);
+}
+
+int Binary_tree::get_min() {
+    return recursion_get_min(root);
+}
+
+int Binary_tree::recursion_get_min(Note *el) {
+    if (!el->left) {
+        return el->data;
+    }
+    return recursion_get_min(el->left);
+}
+
+void Binary_tree::remove(int val) {
+    recursion_remove(root, val);
+}
+
+void Binary_tree::recursion_remove(Note *el, int val) {
+    if (val > el->data && el->right) {
+        recursion_remove(el->right, val);
+        return;
+    } else if (val < el->data && el->left) {
+        recursion_remove(el->left, val);
+        return;
+    } else if (val == el->data) {
+        del_el(el);
+        set_hieght(el->parent);
+        return;
+    }
+    cout << "There isn't note with value = " << val << endl;
+}
+
+
+void Binary_tree::del_el(Note *el) {
+    if (!el->right && !el->left) {
+        el->parent->right == el ? el->parent->right = nullptr : el->parent->left = nullptr;
+        delete el;
+    } else if (el->right && !el->left) {
+        if (el->parent->right == el) {
+            el->parent->right = el->right;
+            el->right->parent = el->parent;
+        } else {
+            el->parent->left = el->right;
+            el->left->parent = el->parent;
         }
         delete el;
-    }
-}
-
-int Binary_tree::get_height() {
-    return recurse_get_height(root);
-}
-
-int Binary_tree::recurse_get_height(Note *el) {
-    if (el == nullptr) {
-        return 0;
-    }
-    int left_tree = recurse_get_height(el->left);
-    int right_tree = recurse_get_height(el->right);
-    return get_max(left_tree, right_tree) + 1;
-}
-
-int Binary_tree::get_max(int a1, int a2) {
-    if (a1 < a2) {
-        return a2;
+    } else if (!el->right && el->left) {
+        if (el->parent->right == el) {
+            el->parent->right = el->left;
+            el->right->parent = el->parent;
+        } else {
+            el->parent->left = el->left;
+            el->left->parent = el->parent;
+        }
+        delete el;
     } else {
-        return a1;
+        int max_of_left = recursion_get_max(el->left);
+        remove(max_of_left);
+        el->data = max_of_left;
     }
 }
+
+
+void Binary_tree::set_hieght(Note *el) {
+
+}
+
+void Binary_tree::symmetrical_bypass() {
+
+}
+
+
 
