@@ -19,11 +19,11 @@ public:
 
     void remove(int val);
 
-    void symmetrical_bypass();
+    void symmetrical_bypass(char *what_p = "d");
 
     void delete_tree();
 
-    void copy_tree();
+    Binary_tree *copy_tree();
 
     int get_balance();
 
@@ -48,9 +48,16 @@ private:
     void recursion_remove(Note *el, int val);
 
     void del_el(Note *el);
-    
 
+    void recursion_symmetrical_bypass(Note *el, char *what_p);
+
+    void recursion_delete_tree(Note *el);
+
+    void recursion_add_to_copy_tree(Note *el, Binary_tree *copy_bt);
+    
     void set_hieght(Note *el);
+
+    int get_max(int a1, int a2);
 };
 
 #endif
