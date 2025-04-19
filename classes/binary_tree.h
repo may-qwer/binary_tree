@@ -1,11 +1,13 @@
 #include "note.h"
-#include "linked_list.h"
 #ifndef BINARY_TREE_H
 #define BINARY_TREE_H
 
 class Binary_tree {
 public:
     Note *root;
+
+    int pr_data = 0;
+    int pr_height = 1;
 
     Binary_tree(int first_val);
 
@@ -19,13 +21,13 @@ public:
 
     void remove(int val);
 
-    void symmetrical_bypass(char *what_p = "d");
+    void symmetrical_bypass(int what_pr = 0);
 
     void delete_tree();
 
     Binary_tree *copy_tree();
 
-    int get_balance();
+    int get_balance_for_tree();
 
     void left_rotate();
 
@@ -49,7 +51,7 @@ private:
 
     void del_el(Note *el);
 
-    void recursion_symmetrical_bypass(Note *el, char *what_p);
+    void recursion_symmetrical_bypass(Note *el, int what_pr);
 
     void recursion_delete_tree(Note *el);
 
@@ -58,6 +60,8 @@ private:
     void set_hieght(Note *el);
 
     int get_max(int a1, int a2);
+
+    int get_balance_for_el(Note *el);
 };
 
 #endif

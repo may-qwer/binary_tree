@@ -1,6 +1,5 @@
 #include <iostream>
 #include "./classes/binary_tree.h"
-#include "./classes/linked_list.h"
 using namespace std;
 
 void add_els_to_tree(Binary_tree *bt) {
@@ -52,12 +51,17 @@ int main() {
     Binary_tree *copy_bt = bt.copy_tree();
     cout << "This tree: ";
     bt.symmetrical_bypass();
-    cout << "\nCopy tree: ";
+    cout << "Copy tree: ";
     copy_bt->symmetrical_bypass();
-    cout << endl;
     cout << "---------------" << endl;
     cout << "Show height: " << endl;
-    bt.symmetrical_bypass("h");
+    int p_hieght = 1;
+    bt.symmetrical_bypass();
+    bt.symmetrical_bypass(p_hieght);
+    cout << "---------------" << endl;
+    cout << "Balance for tree: ";
+    cout << bt.get_balance_for_tree() << endl;
+
 
     cout << "===============" << endl;
     cout << "end" << endl;

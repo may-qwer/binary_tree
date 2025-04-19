@@ -124,22 +124,22 @@ void Binary_tree::del_el(Note *el) {
     }
 }
 
-void Binary_tree::symmetrical_bypass(char *what_p = "d") {
-    recursion_symmetrical_bypass(root, what_p);
+void Binary_tree::symmetrical_bypass(int what_pr) {
+    recursion_symmetrical_bypass(root, what_pr);
     cout << endl;
 }
 
-void Binary_tree::recursion_symmetrical_bypass(Note *el, char *what_p) {
+void Binary_tree::recursion_symmetrical_bypass(Note *el, int what_pr) {
     if (el->left) {
-        recursion_symmetrical_bypass(el->left, what_p);
+        recursion_symmetrical_bypass(el->left, what_pr);
     }
-    if (what_p == "d") {
+    if (what_pr == pr_data) {
         cout << el->data << " ";
-    } else if (what_p == "h") {
-        cout << el->height << " ";
+    } else if (what_pr == pr_height) {
+        cout << el->height << "  ";
     }
     if (el->right) {
-        recursion_symmetrical_bypass(el->right, what_p);
+        recursion_symmetrical_bypass(el->right, what_pr);
     }
 }
 
@@ -208,6 +208,17 @@ void Binary_tree::set_hieght(Note *el) {
 
 int Binary_tree::get_max(int a1, int a2) {
     return (a1<a2) ? a2 : a1;
+}
+
+int Binary_tree::get_balance_for_tree() {
+    return get_balance_for_el(root);
+}
+
+int Binary_tree::get_balance_for_el(Note *el) {
+    if (el->right && el->left) {
+        return el->right->height - el->left->height;
+    }
+    return 0;  
 }
 
 
