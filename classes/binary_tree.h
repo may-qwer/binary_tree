@@ -19,23 +19,17 @@ public:
 
     int get_min();
 
-    void remove(int val);
+    void remove(int val);//if no chalds or 1 chald - delete and move chald (if no chalds - nullptr), if 2 chalds - remove to greater of left tree;
 
-    void symmetrical_bypass(int what_pr = 0);
+    void symmetrical_bypass(int what_pr = 0);//left, data, right;
 
-    void delete_tree();
+    void delete_tree();//left, right, data;
 
-    Binary_tree *copy_tree();
+    Binary_tree *copy_tree();//data, left, right
 
     int get_balance_for_tree();
 
-    void left_rotate();
-
-    void right_rotate();
-
-    void left_right_rotate();
-
-    void right_left_rotate();
+    void balance();
 
 private:
 
@@ -62,6 +56,18 @@ private:
     int get_max(int a1, int a2);
 
     int get_balance_for_el(Note *el);
+
+    void recursion_balance(Note *el);
+
+    void left_rotate(Note *el);
+
+    void right_rotate(Note *el);
+
+    void left_right_rotate(Note *el);
+
+    void right_left_rotate(Note *el);
+
+    void swap(Note *el_parent, Note *el_chald);
 };
 
 #endif

@@ -7,7 +7,7 @@ void add_els_to_tree(Binary_tree *bt) {
     bt->add(75);
     bt->add(80);
     bt->add(90);
-    bt->add(91);
+    bt->add(89);
     bt->add(77);
     bt->add(78);
     bt->add(79);
@@ -59,8 +59,16 @@ int main() {
     bt.symmetrical_bypass();
     bt.symmetrical_bypass(p_hieght);
     cout << "---------------" << endl;
-    cout << "Balance for tree: ";
+    cout << "Balances for tree: ";
     cout << bt.get_balance_for_tree() << endl;
+    cout << "---------------" << endl;
+    cout << "Height:         ";
+    bt.symmetrical_bypass(p_hieght);
+    cout << "Before balance: ";
+    bt.symmetrical_bypass();
+    bt.balance();
+    cout << "After balance:  ";
+    bt.symmetrical_bypass();
 
 
     cout << "===============" << endl;
