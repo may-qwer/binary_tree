@@ -217,36 +217,36 @@ int Binary_tree::get_balance_for_tree() {
 int Binary_tree::get_balance_for_el(Note *el) {
     if (el->right && el->left) {
         return el->right->height - el->left->height;
+    } else if (el->right && !el->left) {
+        return 2;
+    } else if (!el->right && el->left) {
+        return -2;
     }
     return 0;  
 }
 
-void Binary_tree::balance() {
-    recursion_balance(root);
-}
-
 void Binary_tree::recursion_balance(Note *el) {
     int balance_val = get_balance_for_el(el);
-    if (balance_val >= 2) {
-        if (balance_val == 2) {
-            if (el->right) {
-                if (get_balance_for_el(el->right) == -1) {
-                    right_left_rotate(el);
-                }
+    if (balance_val == 2) {
+        if (el->right) {
+            if (get_balance_for_el(el->right) == 1) {
+                left_rotate(el->right);
             }
-        } else {
-            right_rotate(el);
         }
-    } else if (balance_val <= -2) {
-        if (balance_val == -2) {
-            if (el->left) {
-                if (get_balance_for_el(el->right) == 1) {
-                    left_right_rotate(el);
-                }
+        right_rotate(el);
+    } else if (balance_val == -2) {
+        if (el->left) {
+            if (get_balance_for_el(el->left) == -1) {
+                right_rotate(el->left);
             }
-        } else {
-            left_rotate(el);
         }
+        left_rotate(el);
+    } else if (balance_val > 2) {
+        left_rotate(el);
+        recursion_balance(el);
+    } else if (balance_val < -2) {
+        right_rotate(el);
+        recursion_balance(el);
     } else {
         return;
     }
@@ -260,31 +260,33 @@ void Binary_tree::recursion_balance(Note *el) {
 }
 
 void Binary_tree::left_rotate(Note *el){
+    Note *tmp_new_right = new Note;
+    tmp_new_right->data = el->data;
+    tmp_new_right->right = el->right;
+    tmp_new_right->height = el->height;
+    el->right = tmp_new_right;
+    tmp_new_right->parent = el->right;
     swap(el, el->left);
-    Note *tmp = new Note;
-    tmp = el->left;
+    Note *tmp_remove_left = new Note;
+    tmp_remove_left = el->left;
     el->left = el->left->left;
-    el->right = tmp;
+    delete tmp_remove_left;
     set_hieght(el);
 }
 
 void Binary_tree::right_rotate(Note *el){
+    Note *tmp_new_left = new Note;
+    tmp_new_left->data = el->data;
+    tmp_new_left->left = el->left;
+    tmp_new_left->height = el->height;
+    el->left = tmp_new_left;
+    tmp_new_left->parent = el->left;
     swap(el, el->right);
-    Note *tmp = new Note;
-    tmp = el->right;
+    Note *tmp_remove_right = new Note;
+    tmp_remove_right = el->right;
     el->right = el->right->right;
-    el->right = tmp;
+    delete tmp_remove_right;
     set_hieght(el);
-}
-
-void Binary_tree::left_right_rotate(Note *el) {
-    left_rotate(el->left);
-    right_rotate(el);
-}
-
-void Binary_tree::right_left_rotate(Note *el) {
-    right_rotate(el->right);
-    left_rotate(el);
 }
 
 void Binary_tree::swap(Note *el_parent, Note *el_chald) {

@@ -28,8 +28,8 @@ public:
     Binary_tree *copy_tree();//data, left, right
 
     int get_balance_for_tree();
-
-    void balance();
+    
+    void recursion_balance(Note *el);
 
 private:
 
@@ -57,15 +57,9 @@ private:
 
     int get_balance_for_el(Note *el);
 
-    void recursion_balance(Note *el);
-
     void left_rotate(Note *el);
 
     void right_rotate(Note *el);
-
-    void left_right_rotate(Note *el);
-
-    void right_left_rotate(Note *el);
 
     void swap(Note *el_parent, Note *el_chald);
 };
